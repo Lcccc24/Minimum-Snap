@@ -1,0 +1,22 @@
+function M = getM(n_seg, n_order, ts)
+    M = [];
+    for i = 1:n_seg
+        M_k = zeros(8,n_order+1);
+        %#####################################################
+        % STEP 1.1: calculate M_k of the k-th segment 
+        %
+        %
+        %
+        %
+        for k = 0:3
+            for j = k:n_order
+                M_k(k+1,j+1)=factorial(j)/factorial(j-k)*(0^(j-k));
+            end
+        end
+
+        for k = 0:3
+            for j = k:n_order
+                M_k(k+1+4,j+1)=factorial(j)/factorial(j-k)*(ts(i)^(j-k));
+        M = blkdiag(M, M_k);
+    end
+end
